@@ -6,7 +6,7 @@ import TopNav from '@/components/top-nav';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Agency Landing Page',
+  title: 'NFT Marketplace',
   description: 'Learning to Develop a Landing Page Using Tailwind CSS',
 };
 
