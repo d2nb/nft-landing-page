@@ -4,10 +4,6 @@ const config: Config = {
   darkMode: ['class'],
   content: ['./components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
   theme: {
-    colors: {
-      black: '#0F051D',
-      'light-grey': '#7B7583',
-    },
     container: {
       center: true,
       padding: '2rem',

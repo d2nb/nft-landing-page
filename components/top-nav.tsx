@@ -44,7 +44,7 @@ const navLinks = [
 
 const TopNav = () => {
   return (
-    <div className="flex justify-between items-center text-black px-4 h-9 md:h-20 mx-auto mt-6 md:mt-3 max-w-screen-xl">
+    <div className="flex justify-between items-center px-4 h-9 md:h-20 mx-auto max-w-screen-xl">
       <div
         className={`${orbitron.className} text-2xl md:text-3xl font-extrabold`}
       >
@@ -59,7 +59,7 @@ const TopNav = () => {
       </div>
       <div className="flex gap-x-5">
         <Link href="/">
-          <TwitterLogoIcon className="w-5 md:w-6 h-5 md:h-6" fill="black" />
+          <TwitterLogoIcon className="w-5 md:w-6 h-5 md:h-6" />
         </Link>
         <Link href="/">
           <DiscordLogoIcon className="w-5 h-5" />
@@ -72,7 +72,7 @@ const TopNav = () => {
             <SheetTrigger asChild>
               <HamburgerMenuIcon className="w-5 h-5" />
             </SheetTrigger>
-            <SheetContent className="text-black">
+            <SheetContent>
               <div
                 className={`${orbitron.className} my-2 text-2xl font-extrabold`}
               >
