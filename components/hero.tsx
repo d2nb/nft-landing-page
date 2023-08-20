@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 
-const Heading = () => {
+const Hero = () => {
   return (
     <div className="mt-20 md:flex md:justify-between md:items-center">
       <div className="text-center md:text-left md:w-[520px]">
@@ -67,4 +67,4 @@ const Heading = () => {
   );
 };
 
-export default Heading;
+export default Hero;
