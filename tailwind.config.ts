@@ -13,6 +13,7 @@ const config: Config = {
     },
     extend: {
       colors: {
+        desc: 'hsl(var(--desc))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

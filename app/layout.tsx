@@ -2,7 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
-import TopNav from '@/components/top-nav';
+import Navbar from '@/components/navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,9 +31,11 @@ export default function RootLayout({
           defaultTheme={ThemeMode.System}
           enableSystem
         >
-          <main className="bg-[url('/bg.png')] dark:bg-none bg-no-repeat bg-top pt-6 md:pt-2">
-            <TopNav />
-            {children}
+          <main className="bg-[url('/images/main-bg.png')] md:bg-[length:100%] dark:bg-none bg-no-repeat bg-top pt-6 md:pt-2 min-h-screen">
+            <div className="container px-4 md:px-8">
+              <Navbar />
+              {children}
+            </div>
           </main>
         </ThemeProvider>
       </body>

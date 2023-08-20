@@ -44,9 +44,9 @@ const navLinks = [
 
 const TopNav = () => {
   return (
-    <div className="flex justify-between items-center px-4 h-9 md:h-20 mx-auto max-w-screen-xl">
+    <div className="flex justify-between items-center h-9 md:h-20 mx-auto">
       <div
-        className={`${orbitron.className} text-2xl md:text-3xl font-extrabold`}
+        className={`${orbitron.className} text-2xl md:text-3xl font-extrabold cursor-pointer select-none`}
       >
         NFTHub
       </div>
