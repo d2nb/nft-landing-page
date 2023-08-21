@@ -51,17 +51,11 @@ const Hero = () => {
       </div>
       <Image
         src="/images/main-banner.png"
-        width={325}
-        height={320}
         alt="avatar"
-        className="md:hidden mx-auto mt-8"
-      />
-      <Image
-        src="/images/main-banner.png"
         width={650}
         height={640}
-        alt="avatar"
-        className="hidden md:block"
+        className="w-[325px] h-[320px] md:w-[650px] md:h-[640px] mx-auto mt-8"
+        priority
       />
     </div>
   );
