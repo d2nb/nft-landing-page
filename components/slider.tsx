@@ -3,7 +3,7 @@
 import { FC, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
-import { useKeenSlider } from 'keen-slider/react';
+import { useKeenSlider, KeenSliderOptions } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 
 const collectionList = [
@@ -47,7 +47,29 @@ const Arrow: FC<{
   );
 };
 
-export const MobileSlider = () => {
+const Card: FC<{
+  cover: string;
+  title: string;
+  desc: string;
+  imageWidth: number;
+  imageHeight: number;
+}> = (props) => {
+  return (
+    <div className="text-center">
+      <Image
+        src={props.cover}
+        width={props.imageWidth}
+        height={props.imageHeight}
+        alt="cover"
+        className="rounded-2xl mx-auto"
+      />
+      <h3 className="text-2xl font-medium mt-6 mb-2">{props.title}</h3>
+      <p className="text-sm font-light">{props.desc}</p>
+    </div>
+  );
+};
+
+function useSlider(options?: KeenSliderOptions) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
@@ -57,26 +79,25 @@ export const MobileSlider = () => {
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
     },
+    ...options,
   });
+
+  return { currentSlide, loaded, sliderRef, instanceRef };
+}
+
+export const MobileSlider = () => {
+  const { currentSlide, loaded, sliderRef, instanceRef } = useSlider();
 
   return (
     <div className="relative md:hidden">
       <div ref={sliderRef} className="keen-slider">
         {collectionList.map((item) => (
-          <div key={item.cover} className="keen-slider__slide text-center">
-            <Image
-              src={item.cover}
-              width={360}
-              height={480}
-              alt="cover"
-              className="rounded-2xl"
-            />
-            <h3 className="text-2xl font-medium mt-6 mb-2">{item.title}</h3>
-            <p className="text-sm font-light">{item.desc}</p>
+          <div key={item.cover} className="keen-slider__slide">
+            <Card {...item} imageWidth={360} imageHeight={480} />
           </div>
         ))}
       </div>
-      {loaded && instanceRef.current && (
+      {loaded && (
         <>
           <Arrow
             left
@@ -86,7 +107,7 @@ export const MobileSlider = () => {
           <Arrow
             disabled={
               currentSlide ===
-              instanceRef.current.track.details.slides.length - 1
+              Number(instanceRef.current?.track.details.slides.length) - 1
             }
             onClick={() => instanceRef.current?.next()}
           />
@@ -97,46 +118,36 @@ export const MobileSlider = () => {
 };
 
 export const PCSlider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+  const { currentSlide, loaded, sliderRef, instanceRef } = useSlider({
     slides: {
       perView: 4,
     },
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
-    },
   });
-
-  const length = instanceRef.current?.track.details.maxIdx;
 
   return (
     <div className="hidden relative md:block">
       <div ref={sliderRef} className="keen-slider">
         {collectionList.map((item) => (
-          <div key={item.cover} className="keen-slider__slide text-center">
-            <Image
-              src={item.cover}
-              width={264}
-              height={352}
-              alt="cover"
-              className="rounded-2xl mx-auto"
-            />
-            <h3 className="text-2xl font-medium mt-6 mb-2">{item.title}</h3>
-            <p className="text-sm font-light">{item.desc}</p>
+          <div key={item.cover} className="keen-slider__slide">
+            <Card {...item} imageWidth={264} imageHeight={352} />
           </div>
         ))}
       </div>
-      <>
-        <Arrow
-          left
-          disabled={currentSlide === 0}
-          onClick={() => instanceRef.current?.prev()}
-        />
-        <Arrow
-          disabled={length ? currentSlide === length : false}
-          onClick={() => instanceRef.current?.next()}
-        />
-      </>
+      {loaded && (
+        <>
+          <Arrow
+            left
+            disabled={currentSlide === 0}
+            onClick={() => instanceRef.current?.prev()}
+          />
+          <Arrow
+            disabled={
+              currentSlide === instanceRef.current?.track.details.maxIdx
+            }
+            onClick={() => instanceRef.current?.next()}
+          />
+        </>
+      )}
     </div>
   );
 };
