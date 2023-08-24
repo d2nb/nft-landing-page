@@ -13,7 +13,7 @@ const Hero = () => {
           A 890 piece custom Nerko&apos;s collection is joining the NFT space on
           Opensea.
         </p>
-        <Button className="rounded-full w-[226px] md:w-[266px] h-[52px] md:h-[66px] text-white text-base md:text-lg font-medium bg-gradient-to-tr from-[#2600FC] to-[#FF00EA] mt-9">
+        <Button className="rounded-full w-[226px] md:w-[266px] h-[52px] md:h-[66px] text-white text-base md:text-lg font-medium bg-gradient-12 from-[#2600FC] to-[#FF00EA] mt-9">
           View in OPENSEA
           <ArrowTopRightIcon className="w-6 h-6 ml-1" />
         </Button>

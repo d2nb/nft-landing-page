@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,12 +32,13 @@ export default function RootLayout({
           defaultTheme={ThemeMode.System}
           enableSystem
         >
-          <main className="bg-[url('/images/main-bg.png')] md:bg-[length:100%] dark:bg-none bg-no-repeat bg-top pt-6 md:pt-2 min-h-screen">
+          <main className="bg-[url('/images/main-bg.png')] md:bg-[length:100%] dark:bg-none bg-no-repeat bg-top py-6 md:pt-0 md:pb-20 min-h-screen">
             <div className="container px-4 md:px-8">
               <Navbar />
               {children}
             </div>
           </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
